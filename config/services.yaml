@@ -32,6 +32,19 @@ services:
     App\Service\Interfaces\MessageServiceInterface:
         class: App\Service\MessageService
 
+    App\Service\Provider\Providers:
+        autowire: true
+        arguments:
+            - [
+                '@App\Service\Provider\PrivateBank\PrivateBank',
+                '@App\Service\Provider\MonoBank\MonoBank'
+            ]
+
+    App\Service\Mailer\Mailer:
+        autowire: true
+        arguments:
+            - '%env(MAIL_TO)%'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
